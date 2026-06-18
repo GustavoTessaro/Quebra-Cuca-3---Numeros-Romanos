@@ -5,7 +5,7 @@
         string numeroRomano = "";
         do
         {
-            Console.Clear();
+            LimparTelaSeguro();
             Console.WriteLine("Digite um número romano (I, V, X, L, C, D, M) para converter para decimal:");
             numeroRomano = Console.ReadLine() ?? "";
         } while (!ValidarNumeroRomano(numeroRomano));
@@ -92,7 +92,7 @@
         int numeroDecimal = 0;
         do
         {
-            Console.Clear();
+            LimparTelaSeguro();
             Console.WriteLine("Digite um número decimal inteiro entre 1 e 3999 para converter para romano:");
             numeroDecimal = int.Parse(Console.ReadLine() ?? "0");
         } while (numeroDecimal < 1 || numeroDecimal > 3999);
@@ -116,6 +116,18 @@
         return numeroRomano;
     }
 
+    private static void LimparTelaSeguro()
+    {
+        try
+        {
+            Console.Clear();
+        }
+        catch (IOException)
+        {
+            // Ignora quando o console não está disponível.
+        }
+    }
+
     public static void Main(string[] args)
     {
         int tentarNovamente = 0;
@@ -125,7 +137,7 @@
 
             do
             {
-                Console.Clear();
+                LimparTelaSeguro();
                 Console.WriteLine("Digite 1 para converter um número decimal para romano ou 2 para converter um número romano para decimal:");
                 escolha = int.Parse(Console.ReadLine() ?? "0");
             }
